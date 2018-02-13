@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instructions: MyString
+  feild: one
+  time_of_day: MyString
+  horse: one
+  number_of_minutes: 1
+
+two:
+  instructions: MyString
+  feild: two
+  time_of_day: MyString
+  horse: two
+  number_of_minutes: 1

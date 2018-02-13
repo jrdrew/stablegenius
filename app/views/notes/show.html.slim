@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Body:
+  = @note.body
+p
+  strong Note type:
+  = @note.note_type
+p
+  strong User:
+  = @note.user
+p
+  strong Horse:
+  = @note.horse
+
+=> link_to 'Edit', edit_horse_note_path(@horse, @note)
+'|
+=< link_to 'Back', horse_path(@horse)

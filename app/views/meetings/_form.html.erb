@@ -1,0 +1,53 @@
+<%= form_for @meeting do |f| %>
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2> "#{pluralize(@meeting.errors.count, "error")} prohibited this meeting from being saved:"</h2>
+      <ul>
+        <% @meeting.errors.full_messages.each do |message| %>
+          <li> <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_time %>
+    <div class="input-group date form_datetime" data-date="<%= @meeting.start_time.try(:strftime, "%F %T") %>" data-date-format = "YYYY-MM-DD hh:mm:ss" data-link-field="meeting_start_time">
+      <input class="form-control" size="16" type="text" value="<%= @meeting.start_time.try(:strftime, "%F %T") %>" readonly="" />
+
+      <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+    </div>
+  <%= f.hidden_field :start_time %>
+
+  </div>
+  <div class="form-group">
+    <%= f.label :end_time %>
+    <div class="input-group date form_datetime" data-date="<%= @meeting.end_time.try(:strftime, "%F %T") %>" data-date-format = "YYYY-MM-DD hh:mm:ss" data-link-field="meeting_end_time">
+      <input class="form-control" size="16" type="text" value="<%= @meeting.end_time.try(:strftime, "%F %T") %>" readonly="" />
+
+      <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+    </div>
+    <%= f.hidden_field :end_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+  <script type="text/javascript">
+      $(".form_datetime").datetimepicker({
+           format: 'yyyy-mm-dd hh:ii:ss p',
+           showMeridian: true,
+           autoclose: true,
+           weekStart: true,
+           todayBtn: true,
+           todayHighlight: true
+      });
+
+  </script>
+<% end %>

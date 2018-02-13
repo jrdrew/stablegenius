@@ -1,0 +1,30 @@
+<%= form_with(model: [ @horse, note ], local: true) do |form| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+        <% note.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :body, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :note_type %>
+    <%= form.select(:note_type, options_for_select([['Vet', 'Vet'],
+                                                    ['Observation', 'Observation'],
+                                                    ['Food', 'Food'],
+                                                    ['Medicine', 'Medicine'],
+                                                    ['Farrier', 'Farrier'],
+                                                    ['Travel', 'Travel']], note.note_type), {},:class => "form-control") %>
+  </div>
+  <div class="actions">
+    <%= form.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>

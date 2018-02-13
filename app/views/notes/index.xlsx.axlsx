@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Notes") do |sheet|
+  sheet.add_row [@horse.name]
+  @notes.each do |note|
+    sheet.add_row [note.note_type, note.user.email, localize(note.created_at, :format => :long), note.body]
+  end
+end

@@ -1,0 +1,82 @@
+<div id="horse" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-lg-4">
+      <%= image_tag @horse.avatar.url(:medium) %>
+    </div>
+    <div class="col-sm-6 col-lg-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Breed</th>
+            <th scope="col">Job</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @horse.name %></td>
+            <td><%= @horse.breed %></td>
+            <td><%= @horse.job %></td>
+            <td><%= @horse.owner %></td>
+            <td><%= localize(@horse.dob, :format => :long) %></td>
+          </tr>
+        </tbody>
+
+        <thead>
+          <tr>
+            <th scope="col">Reg number</th>
+            <th scope="col">Microchip</th>
+            <th scope="col">Usef</th>
+            <th scope="col">Usof</th>
+            <th scope="col">NEDA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @horse.reg_number %></td>
+            <td><%= @horse.microchip %></td>
+            <td><%= @horse.usef %></td>
+            <td><%= @horse.usof %></td>
+            <td><%= @horse.neda %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-sm-3"><%= link_to 'Back', horses_path %></div>
+        <div class="col-sm-3"><%= link_to 'Edit', edit_horse_path(@horse) %></div>
+        <div class="col-sm-3"><%= link_to 'Download as .xlsx', horse_notes_path(@horse, format: :xlsx) %></div>
+        <div class="col-sm-3"><%= link_to 'Destroy', @horse, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%= will_paginate @notes %>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Author</th>
+      <th scope="col">Date</th>
+      <th scope="col">Body</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @notes.each do |note| %>
+    <tr>
+      <td><%= note.note_type %></td>
+      <td><%= note.user.email %></td>
+      <td><%= localize(note.created_at, :format => :long) %></td>
+      <td><%= note.body %></td>
+      <td><%= link_to 'Edit', edit_horse_note_path(@horse, note) %> | <%= link_to 'Delete', horse_note_path(@horse, note), method: :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Add a note:</h2>
+<%= render 'notes/form', horse: @horse, note: @horse.notes.build %>

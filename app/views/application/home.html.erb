@@ -1,0 +1,12 @@
+<div class="text-center">
+  <%= link_to 'Create Event', new_meeting_path %>
+  <%= month_calendar events: @meetings do |date, meetings| %>
+    <%= date.day %>
+
+    <% meetings.each do |meeting| %>
+      <div>
+        <%= link_to meeting.name, meeting_path(meeting) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

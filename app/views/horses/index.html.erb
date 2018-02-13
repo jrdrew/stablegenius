@@ -1,0 +1,32 @@
+<h1>Horses</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+     <%= will_paginate @horses %>
+     <% @horses.each do |horse| %>
+      <tr>
+        <td><%= image_tag horse.avatar.url(:thumb) %></td>
+        <td><%= link_to horse.name, horse %></td>
+        <td><%= link_to 'Show', horse %></td>
+        <td><%= link_to 'Edit', edit_horse_path(horse) %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+
+
+</table>
+
+<br>
+
+<%= link_to 'New Horse', new_horse_path %>
