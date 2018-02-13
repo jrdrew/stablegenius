@@ -15,11 +15,13 @@ gem 'bootstrap-will_paginate'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'popper_js'
-gem 'axlsx', '2.1.0.pre'
-gem 'axlsx_rails'
 
 gem 'simple_calendar'
 gem 'momentjs-rails'
+
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
