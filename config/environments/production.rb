@@ -1,6 +1,18 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.x.mail_from = %(Your site name <no-reply@yourwebsite-domain.com>)
 
+  config.action_mailer.default_url_options = { 
+    host: 'stablegenius.farm' 
+  }
+  
+  config.action_mailer.smtp_settings = {
+    address: 'email-smtp.eu-west-1.amazonaws.com',
+    user_name: ENV["SES_USERNAME"],
+    password: ENV["SES_PASSWORD"]
+  }
+
+  config.action_mailer.raise_delivery_errors = true
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -21,7 +33,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
