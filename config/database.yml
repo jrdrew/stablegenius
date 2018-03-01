@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: stable-genius_production
-  username: stable-genius
-  password: <%= ENV['STABLE-GENIUS_DATABASE_PASSWORD'] %>
+  database: stable_genius_production
+  username: berryfield
+  password: 133westonrd
+  host: stablegeniusdb.cmcebruh20wd.us-east-1.rds.amazonaws.com
+  port: 5432
