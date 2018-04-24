@@ -5,14 +5,14 @@ class HorsesController < ApplicationController
   # GET /horses
   # GET /horses.json
   def index
-    @horses = Horse.paginate(:page => params[:page], :per_page => 2)
+    @horses = Horse.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /horses/1
   # GET /horses/1.json
   def show
     horse = set_horse
-    @notes = horse.notes.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @notes = horse.notes.paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
   end
 
   # GET /horses/new

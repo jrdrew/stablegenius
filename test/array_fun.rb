@@ -1,11 +1,6 @@
-require 'test_helper'
 
-class NoteTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  #
-  FINAL_ARRAY = [2, 3, 1, 1, 4]
+
+  FINAL_ARRAY = [2, 3, 1, 1, 0, 4]
 
   def can_reach_end(index = 0)
     array_length = (FINAL_ARRAY.length - 1)
@@ -18,7 +13,7 @@ class NoteTest < ActiveSupport::TestCase
       return true
     end
 
-    while current_position_value > 0 do
+    while current_position_value > 0 do 
       value = can_reach_end(index + current_position_value)
       if value
         return true
@@ -29,7 +24,4 @@ class NoteTest < ActiveSupport::TestCase
 
   end
 
-  test 'array' do
-    assert can_reach_end
-  end
-end
+  puts can_reach_end

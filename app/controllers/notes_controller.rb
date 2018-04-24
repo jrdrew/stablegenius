@@ -7,7 +7,7 @@ class NotesController < ApplicationController
   # GET /horses/:horse_id/notes.xlsx
   def index
     @horse = Horse.find(params[:horse_id])
-    @notes = Note.where(:horse_id => params[:horse_id]).paginate(:page => params[:page], :per_page => 10)
+    @notes = Note.where(:horse_id => params[:horse_id]).paginate(:page => params[:page], :per_page => 20)
     respond_to do |format|
       format.html
       format.xlsx {
